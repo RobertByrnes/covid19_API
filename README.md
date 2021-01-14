@@ -21,16 +21,20 @@ like United Kingdom are set in [Slug] as united-kingdom therefore pass
 united as $searchParam will return united-kingdom, united-states, united-arab-emirates,
 set country variable for function calls once slug is found e.g. $country = united-kingdom.
 
-# covidAlert::getRangedCovidData($from, $to, $print=NULL)
+# covidAlert::getRangedCovidData()
+args - getRangedCovidData($from, $to, $print=NULL).
 if arg not passed $from = yesterday, $to = today.
 Will return all states e.g. confirmed, recovered, deaths. 
 
-# covidAlert::getTotalCovidData($from, $to, $print=NULL)
+# covidAlert::getTotalCovidData()
+args - getTotalCovidData($from, $to, $print=NULL).
 if arg not passed $from = yesterday, $to = today.
 Will return all states e.g. confirmed, recovered, deaths.
 
-# covidAlert::covidDeclaredVector($vector)
+# covidAlert::covidDeclaredVector()
+args - covidDeclaredVector($vector).
 $vector = confirmed, recovered, deaths from day 1 to now.
 
-# covidAlert::covidLiveData($country)
+# covidAlert::covidLiveData()
+args - covidLiveData($country).
 live by country all states.
