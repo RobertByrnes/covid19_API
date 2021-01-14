@@ -3,7 +3,6 @@
 /**
  * @author Robert Byrnes
  * @created 12/01/2020
- * @licence GNU General Public Licence
  * @source https://api.covid19api.com
  * 
  * 
@@ -52,6 +51,7 @@ $searchParam = 'united';
 // covidAlert::getRangedCovidData($country, $from, $to, $print);
 // covidAlert::covidDeclaredVector($country, $vectorC, $print);
 // covidAlert::covidLiveData($country, $print);
+// covidALert::getDailyNew();
 
 Class covidAlert {
 
@@ -125,6 +125,25 @@ Class covidAlert {
             self::printR($covidLive, $funcName);
         }
         return $covidLive;
+    }
+
+    public static function getDailyNew()
+    {
+        $funcName = 'getDailyNew';
+        $print = true;
+        $country = 'united-kingdom';
+        $to = date('Y-m-d');
+        $from = date('Y-m-d', strtotime($to . " -2 days"));
+        $newTotal = self::getTotalCovidData($country, $from, $to);
+        $dailyNew = array(
+            'from'      => $newTotal[0]->Date,
+            'to'        => $newTotal[1]->Date,
+            'Confirmed' => $newTotal[1]->Confirmed - $newTotal[0]->Confirmed,
+            'Deaths'    => $newTotal[1]->Deaths - $newTotal[0]->Deaths,
+            'Recovered' => $newTotal[1]->Recovered - $newTotal[0]->Recovered,
+            'Active'    => $newTotal[1]->Active - $newTotal[0]->Active
+        );
+        self::printR($dailyNew, $funcName);
     }
 
     private static function printR($data, $funcName)
